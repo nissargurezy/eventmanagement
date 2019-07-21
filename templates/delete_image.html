@@ -1,0 +1,88 @@
+{%extends "dashboardadmin.html"%}
+{%block content%}
+<!DOCTYPE html>
+  <head>
+    <meta name="viewport" charset="utf-8"content="width=device-width,initial-scale=1">
+    <title> registration form</title>
+    <!-- Latest compiled and minified CSS -->
+
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+  .dy{
+    margin-top: 40px;
+  }
+  .ui{
+    margin-top: 40px;
+    margin-left:60px;
+  }
+  .dy label{
+    color:salmon;
+    font-style:italic;
+    font-size:18px;
+  }
+  .id{
+  width:18%;
+  pull-right;
+  height: 60px;
+  margin-right:5px;
+}
+</style>
+
+  </head>
+  <body>
+    <!-- for dispaying flash messages -->
+  {% with messages=get_flashed_messages(with_categories=true)%}
+  {% if messages%}
+  {% for category,message in messages%}
+  <div class="alert alert-{{category}} pull-right id">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+      <span aria-hidden="true">&times;</span></button>
+    <p style="color:black;">{{message}}</p>
+  </div>
+  {%endfor%}
+  {%endif%}
+  {%endwith%}
+  <!-- end of displaying flashed messages -->
+      <div class="container dy">
+
+        <div class="row">
+          <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+              <div id="ui">
+                <h2 style="color:salmon;font-style:italic; margin-left:40px; font-size:20px;">Delete Image</h2>
+
+                <form class="form-group text-left ui" method="post">
+  <h5 style="color:red;font-style:italic;font-size:18px;">Note:Select Caption Of Image To Delete</h5>
+                  <div class="row">
+
+                    <div class="col-lg-6">
+                      <label for="">Caption Field:</label><br>
+                      <select class="form-control" name="image" required>
+                        <option value="" selected disabled hidden>Choose caption</option>
+                        {%for row in data%}
+                        <option value="{{row[1]}}">{{row[1]}}</option>
+                        {%endfor%}
+
+                      </select>
+                    </div>
+                  </div>
+                      <br>
+                    <input type="Submit" name="submit" value="Delete" class="btn btn-primary" style="margin-left:70px;">
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-3"></div>
+
+
+        </div>
+
+      </div>
+  </body>
+</html><br><br><br><br>
+{%endblock%}

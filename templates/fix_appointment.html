@@ -1,0 +1,101 @@
+{%extends "dashboardadmin.html"%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<style>
+  form{
+    width:450px;
+    background: rgba(0,0,0,0.1);
+    padding:15px;
+    margin-top:0px;
+    margin-left:300px;
+    margin-bottom:70px;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    }
+  button[type=submit]{
+    font-weight:bold;
+    width:100%;
+    background:#19b9cc;
+    border:none;
+    margin:1.5em 0 1.5em;
+    outline:none;
+    letter-spacing: 1px;
+    font-size: 15px;
+padding: 14px 0;
+    color:#fff;
+    text-transform: uppercase;
+    transition: 0.5s ease-in;
+    cursor:pointer;
+  }
+  button[type=reset]{
+    font-weight:bold;
+    width:100%;
+    background:red;
+    border:none;
+
+    outline:none;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding: 14px 0;
+    color:#fff;
+    text-transform: uppercase;
+
+    cursor:pointer;
+  }
+  button[type=submit]:hover{
+    background:#000;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="container" style="margin-top:100px;">
+  <div class="col-md-8 col-md-offset-2">
+{%for i in data%}
+  <form method="POST" action="#" enctype="multipart/form-data">
+  	<!-- COMPONENT START -->
+  	<div class="form-group">
+      <center><h2>Fix Appointment</h2></center>
+<br>
+      <label for="">Customer ID</label>
+      <input type="text" value="{{i[0]}}"class="form-control" readonly>
+      <br>
+      <label for="">Customer Name</label>
+      <input type="text"  value="{{i[1]}}"class="form-control" readonly>
+<br>
+      <label for="">Customer Email</label>
+      <input type="text" value="{{i[4]}}"class="form-control" readonly>
+<br>
+      <label for="">Choose date for appointment:</label>
+      <input type="date" name="date"class="form-control"placeholder='Write your Caption..' required >
+      <br>
+      <label for="">Choose time appointment:</label>
+      <input type="time" name="time"class="form-control"placeholder='Write your Caption..' required >
+    <br>
+      <label for="">Message To Customer</label>
+      <textarea name="message" rows="3" cols="40" class="form-control"  placeholder='Write your Message..' required></textarea>
+  	<!-- COMPONENT END --><br>
+
+  		<button type="submit" class="btn btn-primary pull-right" id="sub" ><i class="fa fa-thumb-tack" aria-hidden="true"> </i>&nbsp;Submit</button>
+<br><br><br>
+  	</div>
+
+
+  </form>
+{%endfor%}
+
+
+
+  		</div>
+  	</div>
+  	<!-- COMPONENT END -->
+
+
+</body>
+</html>
+{%endblock%}

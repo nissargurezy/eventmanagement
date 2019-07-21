@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Event Management</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+<style>
+  html,body{
+    height: 100%
+  }
+  .id{
+
+    margin-top:40px;
+    margin-bottom:40px;
+  }
+  .log img{
+    width:150px;
+    height:80px;
+  }
+  .site-footer{
+    background-color:#222;
+    color:#fff;
+    margin-top:30px;
+    padding-top:30px;
+  }
+  .bottom-footer{
+    border-top:1px solid #b2b2b2;
+    margin-top:10px;
+    padding-top:10px;
+    margin-right:0px;
+    color:#b2b2b2
+  }
+  .footer-nav{
+    text-align:right;
+  }
+  .bt1,.bt2,.bt3,.bt4,.bt5{
+    margin-right: 7px;
+    text-decoration: none;
+  }
+  li a{
+    text-decoration: none;
+  }
+  .cust{
+    margin-top: 100px;
+    margin-left: 300px;
+  }
+  #footer .copyright{
+margin-left:40px;
+
+}
+i{
+  margin-left:10px;
+}
+.ic {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #FFFFFF;
+  padding: 0.5em 0.6em;
+}
+#footer{
+background-color:#222;
+bottom: 0;
+position: relative;
+}
+h4{
+color:white;
+font-family:Georgia;
+border-bottom:1px solid #b2b2b2;
+}
+p{
+color:white;
+font-family:Georgia;
+}
+.footer-newsletter{
+margin-top:10px;
+margin-left:120px;
+}
+.footer-link{
+margin-top:10px;
+margin-left:150px;
+}
+.footer-info{
+margin-top:10px;
+margin-right:0px;
+}
+.cont{
+  margin-bottom: 280px;
+}
+
+
+.gray {
+  height: 100px;
+  width: 100px;
+  background: #eee;
+  float: left;
+}
+
+.orange {
+  height: 100px;
+  width: 150px;
+  background: #fdcb05;
+  float: left;
+}
+.ac{
+  margin-top: 3%;
+  margin-left: 30%;
+}
+.pr{
+  margin-top: 3%;
+  margin-left: 3%;
+}
+
+#borderless-cell { border: 1px solid Transparent!important; }
+</style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                      <a class="navbar-brand log" href="#">
+                              <img src="/static/logo.png" width="30" height="30" alt="">
+                      </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="nav nav-tabs">
+                      <li class="nav-item active">
+                        <button type="button" name="button" class="nav-link btn-outline-info {% if  request.endpoint == "dashboard_admin" %}active{% endif %} bt1" onclick="location.href='{{url_for('dashboard_admin')}}'"><i class="fas fa-home"></i> Home</button>
+                      </li>
+                        <li class="nav-item ">
+                            <button type="button" name="button" class="nav-link btn-outline-info {% if  request.endpoint == "customers_list" %}active{% endif %} bt1" onclick="location.href='{{url_for('customers_list')}}'"><i class="fas fa-list-ul"></i> Customer List</button>
+                        </li>
+                        <li class="nav-item dropdown">
+                               <button type="button" name="button" class="nav-link btn-outline-info bt2" class="nav-link  dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-images"></i> images</button>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item " href="{{url_for('upload_images')}}">Add images</a>
+                              <a class="dropdown-item" href="{{url_for('delete_image')}}">Delete Images</a>
+                            </div>
+                          </li>
+
+                          <li class="nav-item ">
+                              <button type="button" name="button" class="nav-link btn-outline-info {% if  request.endpoint == "contactus_details" %}active{% endif %} bt3" onclick="location.href='{{url_for('contactus_details')}}'">Contact details </button>
+                          </li>
+
+
+                          <li class="nav-item">
+                          <button type="button" name="button" class="nav-link btn-outline-info bt5" onclick="location.href='{{url_for('dropsession_admin')}}'">Log out <i class="fas fa-sign-out-alt"></i></button>
+                          </li>
+                      </ul>
+                  </div>
+    </nav>
+
+{%block content%}
+
+
+<button class="btn btn-outline-primary ac" onclick="myFunction()"style="width:200px;">Accepted List</button>
+<button class="btn btn-outline-info pr" onclick="myFunction2()"style="width:200px;">Processed List</button>
+<button class="btn btn-outline-success pr" onclick="myFunction3()" style="width:200px;">History</button>
+
+<div id="myDIV1" >
+  <p style="color:dodgerblue;margin-top: 30px; margin-left:30px;font-family:Georgia;"><b>Details of Accepted Appointments.....</b></p>
+<div class="container cont">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Event Type</th>
+        <th scope="col">Budget</th>
+        <th scope="col">Appointment Date</th>
+        <th scope="col">Event Date</th>
+        <th scope="col">Appointment Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in data%}
+      <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[13]}}</td>
+        <td>{{i[14]}}</td>
+        <td>{{i[3]}}</td>
+        <td>{{i[15]}}</td>
+        <td>{{i[5]}}</td>
+        <td id="borderless-cell"> <button type="button" class="btn btn-info" name="button" onclick="location.href='{{url_for('statusto_processed',reg_id=i[0])}}'">Process</button> </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+</div>
+
+<div id="myDIV2" style="  display:none;">
+  <p style="color:teal;margin-top: 30px; margin-left:30px;font-family:Georgia;"><b>Details of Processed Appointments.....</b></p>
+  <div class="container cont">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Event Type</th>
+          <th scope="col">Budget</th>
+          <th scope="col">Appointment Date</th>
+          <th scope="col">Event Date</th>
+          <th scope="col">Appointment Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in result%}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          <td>{{i[13]}}</td>
+          <td>{{i[14]}}</td>
+          <td>{{i[3]}}</td>
+          <td>{{i[15]}}</td>
+          <td>{{i[5]}}</td>
+          <td id="borderless-cell"> <button type="button" class="btn btn-info" name="button" onclick="location.href='{{url_for('statusto_completed',reg_id=i[0])}}'">Completed</button> </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div id="myDIV3" style="  display:none;">
+
+  <p style="color:teal;margin-top: 30px; margin-left:30px;font-family:Georgia;"><b>List Of Completed Events.....</b></p>
+  <div class="container cont">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Event Type</th>
+          <th scope="col">Event Date</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in history%}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          <td>{{i[7]}}</td>
+          <td>{{i[9]}}</td>
+
+
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+
+
+
+</div>
+
+
+    {%endblock%}
+
+
+    <footer id="footer" >
+    <div class="footer-top">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-3 col-md-6 footer-info">
+    				<h4>Contact us on..</h4>
+    				<p>Email:Arruvanie726@gmail.com <br>Contact Number:7006112229</p>
+    			</div>
+    			<div class="col-lg-3 col-md-6 footer-link">
+    				<h4>Follow us on</h4>
+    				<a href="" class="twitter"><i class="fa fa-twitter ic"></i></a>
+    				<a href="" class="facebook"><i class="fa fa-facebook ic"></i></a>
+    				<a href="" class="instagram"><i class="fa fa-instagram ic"></i></a>
+    				<a href="" class="google-plus"><i class="fa fa-google-plus ic"></i></a>
+    				<a href="" class="linkedin"><i class="fa fa-linkedin ic"></i></a>
+    			</div>
+    			<div class="col-lg-3 col-md-6 footer-newsletter">
+    				<h4>Address</h4>
+    				<p> Badwan Gurez Bandipora Gurez <br> Near Kishniganga Project</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <p class="copyright text-muted">copy right &copy; Event Management 2019</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    function myFunction() {
+      var x = document.getElementById("myDIV1");
+      var y = document.getElementById("myDIV2");
+      var z = document.getElementById("myDIV3");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+        z.style.display = "none";
+      }
+    }
+    function myFunction2() {
+      var x = document.getElementById("myDIV2");
+      var y = document.getElementById("myDIV1");
+      var z = document.getElementById("myDIV3");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+        z.style.display = "none";
+      }
+    }
+    function myFunction3() {
+      var x = document.getElementById("myDIV3");
+      var y = document.getElementById("myDIV1");
+      var z = document.getElementById("myDIV2");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+        z.style.display = "none";
+      }
+    }
+    </script>
+  </body>
+</html>

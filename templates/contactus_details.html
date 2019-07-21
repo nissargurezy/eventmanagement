@@ -1,0 +1,112 @@
+{%extends "dashboardadmin.html"%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+  .cont{
+    margin-top: 30px;
+    margin-bottom: 210px;
+    font-family:Georgia;
+  }
+</style>
+</head>
+<body>
+
+
+  <button class="btn btn-outline-primary ac" onclick="myFunction()"style="width:200px;">Contact us List</button>
+  <button class="btn btn-outline-info pr" onclick="myFunction2()"style="width:200px;">FeedBack</button>
+
+<div id="myDIV1">
+  <p style="color:salmon;margin-top: 30px; margin-left:50px;font-family:Georgia;"><b>Contact us details...</b></p>
+<div class="container cont">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in data%}
+      <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[2]}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+
+<div id="myDIV2" style="  display:none;">
+  <p style="color:salmon;margin-top: 30px; margin-left:50px;font-family:Georgia;"><b>FeedBack Details.....</b></p>
+<div class="container cont">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Event Type</th>
+          <th scope="col">Event Date</th>
+            <th scope="col">FeedBack</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in fback%}
+      <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[7]}}</td>
+        <td>{{i[9]}}</td>
+        <td>{{i[13]}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("myDIV1");
+  var y = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  }
+}
+function myFunction2() {
+  var x = document.getElementById("myDIV2");
+  var y = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  }
+}
+</script>
+
+
+</body>
+</html>
+{%endblock%}

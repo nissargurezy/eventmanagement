@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat');
+        @import url('https://fonts.googleapis.com/css?family=Anton');
+        body{
+          background-color:#18121E;
+          font-family: 'Montserrat', sans-serif;
+          background: url(static/event3.jpg) no-repeat;
+            background-position: center;
+
+          background-size: cover;
+          opacity:0.8;
+        }
+        h1{
+          text-align:center;
+          color:white;
+          font-size:30px;
+          margin-top:25px;
+          font-family: 'Anton', sans-serif;
+        }
+        form{
+          width:300px;
+          margin:auto;
+        }
+        img{
+          margin-left:80px;
+
+        }
+        .well{
+          margin:auto;
+          width:350px;
+          height:350px;
+          margin-top:60px;
+        }
+        @media only screen and (max-width:480px){
+          .well{
+            width:300px;
+          }
+          .form-control{
+            width:80%;
+
+          }
+          img{
+            position:relative;
+            right:10px;
+          }
+        }
+        .eve{
+          margin-top:50px;
+        }
+        .id{
+        width:20%;
+        pull-right;
+        height: 60px;
+        margin-right:5px;
+      }
+      </style>
+  </head>
+  <body>
+    <!-- for dispaying flash messages -->
+  {% with messages=get_flashed_messages(with_categories=true)%}
+  {% if messages%}
+  {% for category,message in messages%}
+  <div class="alert alert-{{category}} pull-right id">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+      <span aria-hidden="true">&times;</span></button>
+    <strong>{{message}}</strong>
+  </div>
+  {%endfor%}
+  {%endif%}
+  {%endwith%}
+<!-- end of displaying flashed messages -->
+    <div class="container eve">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1>User Login</h1>
+          <div class="well">
+            <form class="" method="post">
+              <img src="static/eve.png" class="img-circle" alt="user" height="110" width="110">
+              <div class="form-group">
+                <label for="">Email</label>
+                <input type="email" class="form-control" name="email" value="" required>
+              </div>
+              <div class="form-group">
+                <label for="">Password</label>
+                <input type="password" class="form-control" name="password" value="" required>
+              </div>
+              <button type="submit" name="button" style="position:relative;top:5px;" class="btn btn-danger">Sign in</button>
+              <button type="button" name="button" style="position:relative;top:5px;margin-left:140px;width:70px;" class="btn btn-danger" onclick="location.href='{{url_for('home')}}'">Back</button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Event Management</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+  html,body{
+    margin:0;
+    padding:0;
+    height:80%;
+  }
+  .id{
+
+    margin-top:40px;
+    margin-bottom:40px;
+  }
+  .log img{
+    width:150px;
+    height:80px;
+  }
+
+
+  .bt1,.bt2,.bt3,.bt4,.bt5{
+    margin-right: 7px;
+    text-decoration: none;
+  }
+  li a{
+    text-decoration: none;
+  }
+  .cust{
+    margin-top: 100px;
+    margin-left: 300px;
+  }
+  #footer .copyright{
+margin-left:40px;
+
+}
+i{
+  margin-left:10px;
+}
+.ic {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #FFFFFF;
+  padding: 0.5em 0.6em;
+}
+#footer{
+background-color:#222;
+margin-bottom: 0px;
+position: relative;
+
+
+}
+h4{
+color:white;
+font-family:Georgia;
+border-bottom:1px solid #b2b2b2;
+}
+p{
+color:white;
+font-family:Georgia;
+}
+.footer-newsletter{
+margin-top:10px;
+margin-left:120px;
+}
+.footer-link{
+margin-top:10px;
+margin-left:150px;
+}
+.footer-info{
+margin-top:10px;
+margin-right:0px;
+}
+
+.cont{
+   height:100%;
+}
+.id{
+width:20%;
+pull-right;
+height: 60px;
+margin-right:5px;
+}
+
+</style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                      <a class="navbar-brand log" href="#">
+                              <img src="/static/logo.png" width="30" height="30" alt="">
+                      </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="nav nav-tabs">
+                      <li class="nav-item active">
+                        <button type="button" name="button" class="nav-link btn-outline-success {% if  request.endpoint == "user_dashboard" %}active{% endif %} bt1" onclick="location.href='{{url_for('user_dashboard')}}'">Home <i class="fas fa-home"></i></button>
+                      </li>
+
+                      <li class="nav-item active">
+                        <button type="button" name="button" class="nav-link btn-outline-success {% if  request.endpoint == "feedback" %}active{% endif %} bt1" onclick="location.href='{{url_for('feedback')}}'">feedback <i class="far fa-comments"></i></button>
+                      </li>
+                          <li class="nav-item">
+                          <button type="button" name="button" class="nav-link btn-outline-success  bt5" onclick="location.href='{{url_for('dropsession_user')}}'">Log out <i class="fas fa-sign-out-alt"></i></button>
+                          </li>
+                      </ul>
+                  </div>
+    </nav>
+    <!-- for dispaying flash messages -->
+  {% with messages=get_flashed_messages(with_categories=true)%}
+  {% if messages%}
+  {% for category,message in messages%}
+  <div class="alert alert-{{category}} pull-right id">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+      <span aria-hidden="true">&times;</span></button>
+    <strong>{{message}}</strong>
+  </div>
+  {%endfor%}
+  {%endif%}
+  {%endwith%}
+  <!-- end of displaying flashed messages -->
+{%block content%}
+{%for j in data%}
+<p style="color:salmon;margin-top: 30px; margin-left:30px;font-family:Georgia;"><b>Details of {{j[1]}} .....</b></p>
+{%endfor%}
+{%for z in data%}
+
+<div class="row">
+  <div class="col-lg-3"></div>
+  <div class="col-lg-6">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" name="" style="font-style:bold;color:olive;" value="Appointment Date:&nbsp;&nbsp;&nbsp;{{z[3]}}" class="form-control">
+      </div>
+<div class="col-md-6">
+    <input type="text" name="" style="font-style:bold;color:teal;" value="Appointment Time:&nbsp;&nbsp;&nbsp;{{z[5]}}" class="form-control">
+</div>
+    </div>
+
+</div>
+<div class="col-lg-6">
+
+
+  </div>
+
+</div>
+<br>
+{%endfor%}
+<div class="container cont">
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Event Type</th>
+        <th scope="col">Event Date</th>
+        <th scope="col">Status</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {%for i in result%}
+      <tr>
+        <td>{{i[0]}}</td>
+        <td>{{i[1]}}</td>
+        <td>{{i[7]}}</td>
+        <td>{{i[9]}}</td>
+        <td>{{i[12]}}</td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+
+</div>
+
+{%endblock%}
+
+
+    <footer id="footer" >
+    <div class="footer-top">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-3 col-md-6 footer-info">
+    				<h4>Contact us on..</h4>
+    				<p>Email:nissarlone80@gmail.com<br>Contact Number:7006263419</p>
+    			</div>
+    			<div class="col-lg-3 col-md-6 footer-link">
+    				<h4>Follow us on</h4>
+    				<a href="" class="twitter"><i class="fa fa-twitter ic"></i></a>
+    				<a href="" class="facebook"><i class="fa fa-facebook ic"></i></a>
+    				<a href="" class="instagram"><i class="fa fa-instagram ic"></i></a>
+    				<a href="" class="google-plus"><i class="fa fa-google-plus ic"></i></a>
+    				<a href="" class="linkedin"><i class="fa fa-linkedin ic"></i></a>
+    			</div>
+    			<div class="col-lg-3 col-md-6 footer-newsletter">
+    				<h4>Address</h4>
+    				<p> Badwan Gurez Bandipora Gurez <br> Near Kishniganga Project</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <p class="copyright text-muted">copy right &copy; Event Management 2019</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

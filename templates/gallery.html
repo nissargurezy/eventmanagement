@@ -1,0 +1,45 @@
+{%extends "home.html"%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>images</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<style media="screen">
+  .im{
+    margin-left:170px;
+    margin-right:100px;
+
+  }
+  h1{
+    margin-top:40px;
+    margin-left:100px;
+  }
+</style>
+</head>
+<body>
+
+  <h1 class="page header">Gallery</h1>
+      <div class="row im">
+        {% for img_name in results %}
+
+        <div class="col-md-4">
+          <div class="thumbnail">
+
+         <img src="static/images/{{img_name[0]}}" class="img-fluid img-thumbnail" alt="{{img_name[0]}}"  style="width:100%">
+
+         <div class="caption">
+           <p>{{img_name[1]}}</p>
+         </div>
+     </div>
+   </div>
+
+   {%endfor%}
+   </div>
+</body>
+</html>
+{%endblock%}

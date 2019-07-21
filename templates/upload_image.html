@@ -1,0 +1,118 @@
+{%extends "dashboardadmin.html"%}
+{%block content%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+<style>
+  form{
+    width:450px;
+    background: rgba(0,0,0,0.1);
+    padding:15px;
+    margin-top:0px;
+    margin-left:300px;
+    margin-bottom:70px;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    }
+  button[type=submit]{
+    font-weight:bold;
+    width:100%;
+    background:#19b9cc;
+    border:none;
+    margin:1.5em 0 1.5em;
+    outline:none;
+    letter-spacing: 1px;
+    font-size: 15px;
+padding: 14px 0;
+    color:#fff;
+    text-transform: uppercase;
+    transition: 0.5s ease-in;
+    cursor:pointer;
+  }
+  button[type=reset]{
+    font-weight:bold;
+    width:100%;
+    background:red;
+    border:none;
+
+    outline:none;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding: 14px 0;
+    color:#fff;
+    text-transform: uppercase;
+
+    cursor:pointer;
+  }
+  button[type=submit]:hover{
+    background:#000;
+  }
+  .id{
+  width:25%;
+  pull-right;
+  height: 60px;
+  margin-right:5px;
+}
+  </style>
+</head>
+<body>
+  <!-- for dispaying flash messages -->
+{% with messages=get_flashed_messages(with_categories=true)%}
+{% if messages%}
+{% for category,message in messages%}
+<div class="alert alert-{{category}} pull-right id">
+  <button type="button" class="close" data-dismiss="alert" aria-label="close">
+    <span aria-hidden="true">&times;</span></button>
+  <strong>{{message}}</strong>
+</div>
+{%endfor%}
+{%endif%}
+{%endwith%}
+<!-- end of displaying flashed messages -->
+  <div class="container" style="margin-top:100px;">
+  <div class="col-md-8 col-md-offset-2">
+
+  <form method="POST" action="#" enctype="multipart/form-data">
+  	<!-- COMPONENT START -->
+  	<div class="form-group">
+      <center><h2>Add images</h2></center>
+<p style="color:black;"> upload Image to add in to the gallery...</p>
+  		<div class="input-group input-file" name="Fichier1">
+
+        <a class='btn btn-primary' href='javascript:;'>
+            Choose Image [Images only]...
+
+            <input type="file" accept=".jpg,.jpeg"  style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'  required>
+        </a>
+
+        &nbsp;
+        <span class='label label-info' id="upload-file-info"></span>
+
+  		</div>
+
+      <br>
+      <label for="">Caption For Image</label>
+      <input type="text"  name="caption"class="form-control" minlength="5" maxlength="50" placeholder='Write your Caption..' required >
+  	<!-- COMPONENT END --><br>
+
+  		<button type="submit" class="btn btn-primary pull-right" id="sub" ><i class="fa fa-thumb-tack" aria-hidden="true"> </i>&nbsp;Upload</button>
+<br><br><br>
+  	</div>
+
+
+  </form>
+
+
+
+
+  		</div>
+  	</div>
+  	<!-- COMPONENT END -->
+
+
+</body>
+</html>
+{%endblock%}

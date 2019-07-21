@@ -1,0 +1,157 @@
+{%extends "home.html"%}
+{%block content%}
+<!DOCTYPE html>
+  <head>
+    <title> registration form</title>
+    <!-- Latest compiled and minified CSS -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+  body{
+    background:#F2F4F4;
+  }
+  #ui{
+    padding: 30px;
+     margin-top: 30px;
+     margin-bottom:30px;
+      border-radius: 10px;
+  }
+  .id{
+  width:20%;
+  pull-right;
+  height: 60px;
+  margin-right:5px;
+}
+</style>
+  </head>
+  <body>
+    <!-- for dispaying flash messages -->
+  {% with messages=get_flashed_messages(with_categories=true)%}
+  {% if messages%}
+  {% for category,message in messages%}
+  <div class="alert alert-{{category}} pull-right id">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+      <span aria-hidden="true">&times;</span></button>
+    <strong>{{message}}</strong>
+  </div>
+  {%endfor%}
+  {%endif%}
+  {%endwith%}
+<!-- end of displaying flashed messages -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+              <div id="ui">
+                <h1 class="text-center">Registration Form</h1>
+                <form class="form-group" method="post">
+                  <legend>Personal Details</legend>
+                  <div class="row">
+                    <div class="col-lg-6">
+
+                      <label for="">Name</label>  <label style="color:red;">*</label>
+                      <input type="text" name="name" value="" class="form-control" placeholder="Enter Your name" required>
+
+                    </div>
+                    <div class="col-lg-6">
+                      <label for="">Date Of Birth</label> <label style="color:red;">*</label>
+                      <input type="date" name="dob" value="" class="form-control" placeholder="Enter DOB" required>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                          <div class="col-lg-6">
+                            <label for="">Phone Number</label> <label style="color:red;">*</label>
+                            <input type="text" name="phone" pattern="^([+][9][1]|[9][1]|[0]){0,1}([7-9]{1})([0-9]{9})$" value="" placeholder="Enter Phone Number" class="form-control" title="Please Enter Valid Number" required>
+                          </div>
+                          <div class="col-lg-6">
+                            <label for="">Email</label> <label style="color:red;">*</label>
+                            <input type="email" name="email" value="" placeholder="Enter Email" class="form-control" required>
+
+                          </div>
+                    </div> <br>
+                      <div class="row">
+                              <div class="col-lg-6">
+                                <label for="">Address</label>  <label style="color:red;">*</label>
+                                  <textarea placeholder="Enter Address" name="address" class="form-control" required></textarea>
+                              </div>
+                              <div class="col-lg-6">
+                                <label for="">Password</label> <label style="color:red;">*</label>
+                                <input type="password" name="password" value="" placeholder="Enter Password" class="form-control" required>
+
+                              </div>
+                        </div> <br>
+                    <legend>Event Details</legend>
+                    <div class="row">
+                            <div class="col-lg-6">
+                              <label for="">Type Of Event</label><label style="color:red;">*</label>
+                              <select name="event" class="form-control" required>
+                                 <option value="" selected disabled hidden>Choose Event Type</option>
+                                <option value="BirthDay">BirthDay</option>
+                                <option value="Marriage">Marriage</option>
+                                <option value="Engagement">Engagement</option>
+                                <option value="">CollegeFest</option>
+                                <option value="Corporate">Corporate</option>
+                              </select>
+                            </div>
+                            <div class="col-lg-6">
+                              <label for="">Date of Event</label>
+                              <input type="date" name="date" value="" placeholder="Enter date" class="form-control" required>
+                            </div>
+
+                      </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <label for="">Budget</label>
+                        <input type="number"name="budget" value="" placeholder="Enter Your Budget" class="form-control">
+
+                      </div>
+                            <div class="col-lg-6">
+                              <label for="">Name Of Place</label>
+                              <input type="text" name="place" value="" placeholder="Enter Name Of Place" class="form-control">
+
+                            </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                              <div class="col-lg-6">
+                                <label for="">Amenities Required</label><br>
+                                <input type="checkbox" name="users" value="Catering"> Catering<br>
+                                <input type="checkbox" name="users" value="Flower Decor"> Flower Decor<br>
+                                <input type="checkbox" name="users" value="Parking" > Parking<br>
+                                <input type="checkbox" name="users" value="Photography" checked > Photography<br>
+                              </div>
+                              <div class="col-lg-6"><br>
+                                <input type="checkbox" name="users" value="Rooms"> Rooms<br>
+                                <input type="checkbox" name="users" value="Party Hall"> Party Hall<br>
+                                <input type="checkbox" name="users" value="Videography" > Videography<br>
+                                <input type="checkbox" name="users" value="Receptionist" > Receptionist<br>
+
+                              </div>
+                        </div>
+
+
+
+                      <br>
+
+                    <input type="Submit" name="" value="Submit" class="btn btn-primary btn-block">
+              </form>
+
+              </div>
+            </div>
+            <div class="col-lg-3"></div>
+
+
+        </div>
+
+      </div>
+  </body>
+</html>
+{%endblock%}
